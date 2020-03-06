@@ -1,7 +1,25 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, Route, Switch } from 'react-router-dom';
+import NewPost from './NewPost';
 
-function Home({ posts }) {
+function Home() {
+  const [posts, setPosts] = useState([]);
+
+  function getPosts() {
+    const url = `http://localhost:8000`;
+
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        setPosts(data);
+      })
+      .catch(console.error);
+  }
+
+  useEffect(() => {
+    getPosts();
+  }, []);
+
   return (
     <div>
       {posts.map(post => (

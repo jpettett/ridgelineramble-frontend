@@ -2,12 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import Form from './Form';
 
-function NewPost(props) {
+function NewPost() {
   const [post, setPost] = useState({});
   const [createdId, setCreatedId] = useState(null);
 
+  function getPosts() {
+    const url = `http://localhost:8000`;
+
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        setPost(data);
+      })
+      .catch(console.error);
+  }
+
   useEffect(() => {
-    return () => props.getPosts();
+    getPosts();
   }, []);
 
   const handleChange = function(event) {

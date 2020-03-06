@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+// import EditPost from './components/EditPost';
+
 function ShowPost({ match }) {
   const [posts, setPosts] = useState([]);
 
-  //retrieves all posts//
   function getPosts() {
     const url = `http://localhost:8000/post/${match.params.id}`;
 
@@ -19,13 +21,14 @@ function ShowPost({ match }) {
   }, []);
 
   return (
-    <div>
+    <>
       <h2>{posts.title}</h2>
-      <div>
+      <main>
         <h2>By: {posts.author}</h2>
         <p>{posts.body}</p>
-      </div>
-    </div>
+      </main>
+      <Link to={`/post/${match.params.id}/edit`}>Edit Post</Link>
+    </>
   );
 }
 

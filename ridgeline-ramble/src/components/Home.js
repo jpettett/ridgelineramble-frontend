@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Link, Route, Switch } from 'react-router-dom';
-import NewPost from './NewPost';
+import { Link } from 'react-router-dom';
+import { Card } from 'react-bootstrap';
 
 function Home() {
   const [posts, setPosts] = useState([]);
@@ -24,9 +24,20 @@ function Home() {
     <div>
       {posts.map(post => (
         <div key={post.id}>
-          <Link to={'/post/' + post.id}>
-            <ul>{post.title}</ul>
-          </Link>
+          <Card
+            className="postCard"
+            bg="light"
+            text="black"
+            border="primary"
+            style={{ width: '30rem' }}
+          >
+            <Link to={'/post/' + post.id}>
+              <Card.Title>
+                <ul>{post.title}</ul>
+              </Card.Title>
+            </Link>
+            <Card.Text>By: {post.author}</Card.Text>
+          </Card>
         </div>
       ))}
     </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './components/Home';
 import ShowPost from './components/ShowPost';
 import NewPost from './components/NewPost';
@@ -9,7 +10,7 @@ import EditPost from './components/EditPost';
 const App = () => (
   <>
     <header>
-      <h1>Ridgeline Ramble</h1>
+      <img src={process.env.PUBLIC_URL + '/title.png'} alt="Ridgeline Ramble" />
       <Link to="/">Home</Link>
       <Link to="/newpost">New Post</Link>
     </header>

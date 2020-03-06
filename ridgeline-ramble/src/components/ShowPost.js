@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-// import EditPost from './components/EditPost';
+import Disqus from 'disqus-react';
 
 function ShowPost({ match }) {
   const [posts, setPosts] = useState([]);

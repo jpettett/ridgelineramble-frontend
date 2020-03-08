@@ -1,9 +1,9 @@
 import React from 'react';
+import '../Form.css';
 
 function Form({ post, handleSubmit, handleChange }) {
   return (
     <div>
-      <h3>New Post</h3>
       <form onSubmit={handleSubmit}>
         <label>Title:</label>
         <input
@@ -12,14 +12,16 @@ function Form({ post, handleSubmit, handleChange }) {
           onChange={handleChange}
           value={post.title}
         />
-        <label htmlFor="author">Author:</label>
+        <label htmlFor="author">Date:</label>
         <input
           name="author"
           id="author"
           onChange={handleChange}
           value={post.author}
         />
-        <label htmlFor="synopsis">Body:</label>
+        <label className="bodyForm" htmlFor="body">
+          Body:
+        </label>
         <textarea
           name="body"
           id="body"
@@ -27,7 +29,7 @@ function Form({ post, handleSubmit, handleChange }) {
           value={post.body}
         />
 
-        <input type="submit" />
+        <input className="submit" type="submit" />
       </form>
     </div>
   );

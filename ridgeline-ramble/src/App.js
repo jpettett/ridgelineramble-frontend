@@ -20,14 +20,16 @@ const App = () => (
       </Link>
     </header>
 
-    <nav>
+    <>
       <Button
         className="newPost shadow p-3 mb-5 bg-white rounded"
         variant="light"
       >
-        <Link to="/newpost">Create New Post</Link>
+        <Link to="/newpost" className="postText">
+          Create New Post
+        </Link>
       </Button>
-    </nav>
+    </>
     <main>
       <div className="comeOn">
         <Switch>

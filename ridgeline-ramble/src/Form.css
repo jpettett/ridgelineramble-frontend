@@ -1,0 +1,20 @@
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  padding: 10px;
+}
+
+textarea {
+  width: 60rem;
+  height: 30rem;
+}
+
+.submit {
+  margin-top: 5px;
+}
+.submit:hover {
+  background-color: rgba(0, 0, 164, 0.119);
+}

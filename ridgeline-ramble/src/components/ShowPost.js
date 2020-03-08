@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Disqus from 'disqus-react';
+import { Button } from 'react-bootstrap';
+import '../ShowPost.css';
 
 function ShowPost({ match }) {
   const [posts, setPosts] = useState([]);
@@ -22,12 +23,19 @@ function ShowPost({ match }) {
 
   return (
     <>
-      <h2>{posts.title}</h2>
+      <h2 className="title">{posts.title}</h2>
       <main>
-        <h2>By: {posts.author}</h2>
-        <p>{posts.body}</p>
+        <h4 className="date">{posts.author}</h4>
+        <p className="content">{posts.body}</p>
       </main>
-      <Link to={`/post/${match.params.id}/edit`}>Edit Post</Link>
+      <Button
+        className="editPost shadow p-3 mb-5 bg-white rounded"
+        variant="light"
+      >
+        <Link to={`/post/${match.params.id}/edit`} className="editText">
+          Edit Post
+        </Link>
+      </Button>
     </>
   );
 }

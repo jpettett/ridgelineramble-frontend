@@ -1,0 +1,22 @@
+main {
+  padding: 10px 15px 5px 15px;
+}
+
+.title {
+  padding-left: 15px;
+}
+
+.content {
+  padding: 45px;
+  border: 1px solid black;
+  box-shadow: 0px 0px 9px 2px rgba(149, 150, 152, 0.584);
+  background-color: rgb(255, 255, 255);
+}
+
+.editPost {
+  margin-left: 15px;
+}
+
+.editText {
+  color: rgb(108, 29, 29);
+}

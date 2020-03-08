@@ -27,13 +27,19 @@ function Home() {
           className="postCard shadow p-1 mb-3 bg-white rounded"
           key={post.id}
         >
-          <Card bg="light" text="black" border="" style={{ width: '50rem' }}>
+          <Card
+            className="titleCard"
+            bg="light"
+            text="black"
+            border=""
+            style={{ width: '40rem' }}
+          >
             <Link to={'/post/' + post.id}>
               <Card.Title>
                 <ul>{post.title}</ul>
               </Card.Title>
             </Link>
-            <Card.Text>By: {post.author}</Card.Text>
+            <Card.Text>{post.author}</Card.Text>
           </Card>
         </div>
       ))}

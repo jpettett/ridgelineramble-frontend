@@ -1,5 +1,42 @@
+html,
+#root,
+body {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
+}
+
+header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid black;
+  background-image: url('/smith-rock.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+div {
+  align-items: center;
+}
+
+.newPost {
+  margin-top: 10px;
+}
+
+.title {
+  width: 80%;
+}
 .postCard {
-  text-align: center;
-  padding: 5px;
-  margin: 10px;
+  justify-content: center;
+  margin-top: 5px;
+  color: grey;
+  background-color: rgb(255, 255, 255);
 }

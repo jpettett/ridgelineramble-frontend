@@ -23,14 +23,11 @@ function Home() {
   return (
     <div>
       {posts.map(post => (
-        <div key={post.id}>
-          <Card
-            className="postCard"
-            bg="light"
-            text="black"
-            border="primary"
-            style={{ width: '30rem' }}
-          >
+        <div
+          className="postCard shadow p-1 mb-3 bg-white rounded"
+          key={post.id}
+        >
+          <Card bg="light" text="black" border="" style={{ width: '50rem' }}>
             <Link to={'/post/' + post.id}>
               <Card.Title>
                 <ul>{post.title}</ul>

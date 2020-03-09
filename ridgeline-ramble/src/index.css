@@ -37,12 +37,11 @@ a {
 }
 
 .newPost {
-  margin: 20px;
+  margin: 1rem 0rem 0rem 15rem;
   margin-bottom: 15px;
 }
 
 .postText {
-  text-decoration: none;
   color: rgb(108, 29, 29);
 }
 

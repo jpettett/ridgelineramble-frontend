@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Card } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 
 function Home() {
   const [posts, setPosts] = useState([]);
@@ -22,6 +22,16 @@ function Home() {
 
   return (
     <div>
+      <>
+        <Button
+          className="newPost shadow p-3 mb-5 bg-white rounded"
+          variant="light"
+        >
+          <Link to="/newpost" className="postText">
+            Create New Post
+          </Link>
+        </Button>
+      </>
       {posts.map(post => (
         <div
           className="postCard shadow p-1 mb-3 bg-white rounded"

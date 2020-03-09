@@ -6,12 +6,13 @@ import ShowPost from './components/ShowPost';
 import NewPost from './components/NewPost';
 import { Route, Switch, Link } from 'react-router-dom';
 import EditPost from './components/EditPost';
-import { Button } from 'react-bootstrap';
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
 
 const App = () => (
   <>
     <header>
-      <Link to="/">
+      <Link to="/home">
         <img
           className="title"
           src={process.env.PUBLIC_URL + '/title-rr.png'}
@@ -20,20 +21,12 @@ const App = () => (
       </Link>
     </header>
 
-    <>
-      <Button
-        className="newPost shadow p-3 mb-5 bg-white rounded"
-        variant="light"
-      >
-        <Link to="/newpost" className="postText">
-          Create New Post
-        </Link>
-      </Button>
-    </>
     <main>
       <div className="comeOn">
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" component={SignIn} />
+          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/home" component={Home} />
           <Route exact path="/post/:id" component={ShowPost} />
           <Route exact path="/newpost" component={NewPost} />
           <Route exact path="/post/:id/edit" component={EditPost} />

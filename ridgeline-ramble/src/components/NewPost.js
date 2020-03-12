@@ -7,7 +7,7 @@ function NewPost() {
   const [createdId, setCreatedId] = useState(null);
 
   function getPosts() {
-    const url = `http://localhost:8000`;
+    const url = `https://young-spire-13129.herokuapp.com/`;
 
     fetch(url)
       .then(res => res.json())
@@ -31,7 +31,7 @@ function NewPost() {
   function handleSubmit(event) {
     event.preventDefault();
 
-    const url = 'http://localhost:8000';
+    const url = 'https://young-spire-13129.herokuapp.com';
     fetch(url, {
       method: 'POST',
       headers: {
@@ -44,6 +44,7 @@ function NewPost() {
         setCreatedId(data.id);
       });
   }
+  //redirect to new post
   if (createdId) {
     return <Redirect to={`/post/${createdId}`} />;
   }

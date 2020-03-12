@@ -22,7 +22,7 @@ const App = () => (
     </header>
 
     <main>
-      <div className="comeOn">
+      <div>
         <Switch>
           <Route exact path="/" component={SignIn} />
           <Route exact path="/signup" component={SignUp} />

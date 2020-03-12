@@ -7,7 +7,7 @@ function ShowPost({ match }) {
   const [posts, setPosts] = useState([]);
 
   function getPosts() {
-    const url = `http://localhost:8000/post/${match.params.id}`;
+    const url = `https://young-spire-13129.herokuapp.com/post/${match.params.id}`;
 
     fetch(url)
       .then(res => res.json())

@@ -4,9 +4,9 @@ import { Card, Button } from 'react-bootstrap';
 
 function Home() {
   const [posts, setPosts] = useState([]);
-
+  //get & display all posts
   function getPosts() {
-    const url = `http://localhost:8000`;
+    const url = `https://young-spire-13129.herokuapp.com`;
 
     fetch(url)
       .then(res => res.json())

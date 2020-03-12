@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import Form from './Form';
 
 function EditPost({ match }) {
-  const url = `http://localhost:8000/post/${match.params.id}`;
+  const url = `https://young-spire-13129.herokuapp.com/post/${match.params.id}`;
 
   const [post, setPost] = useState({});
   const [deleted, setDeleted] = useState(false);
@@ -41,6 +41,7 @@ function EditPost({ match }) {
       .catch(console.error);
   }
 
+  //delete post and redirect to home page
   function deletePost(event) {
     fetch(url, { method: 'DELETE' })
       .then(res => {
@@ -50,9 +51,9 @@ function EditPost({ match }) {
   }
 
   if (deleted) {
-    return <Redirect to="/" />;
+    return <Redirect to="/home" />;
   }
-
+  //redirect to post
   if (createdId) {
     return <Redirect to={`/post/${createdId}`} />;
   }

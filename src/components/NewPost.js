@@ -1,15 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import Form from './Form';
+import { APIURL } from '../config';
+import { UserContext } from '../UserContext';
 
 function NewPost() {
+  const { user } = useContext(UserContext);
   const [post, setPost] = useState({});
   const [createdId, setCreatedId] = useState(null);
 
   function getPosts() {
-    const url = `https://young-spire-13129.herokuapp.com/`;
+    const url = `${APIURL}`;
 
-    fetch(url)
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `Bearer ${user.token}`
+      },
+      body: JSON.stringify(post)
+    })
       .then(res => res.json())
       .then(data => {
         setPost(data);
@@ -17,9 +27,9 @@ function NewPost() {
       .catch(console.error);
   }
 
-  useEffect(() => {
-    getPosts();
-  }, []);
+  // useEffect(() => {
+  //   getPosts();
+  // }, []);
 
   const handleChange = function(event) {
     event.persist();
@@ -31,11 +41,12 @@ function NewPost() {
   function handleSubmit(event) {
     event.preventDefault();
 
-    const url = 'https://young-spire-13129.herokuapp.com';
+    const url = `${APIURL}`;
     fetch(url, {
       method: 'POST',
       headers: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        Authorization: `Bearer ${user.token}`
       },
       body: JSON.stringify(post)
     })

@@ -9,23 +9,23 @@ function NewPost() {
   const [post, setPost] = useState({});
   const [createdId, setCreatedId] = useState(null);
 
-  function getPosts() {
-    const url = `${APIURL}`;
+  // function getPosts() {
+  //   const url = `${APIURL}`;
 
-    fetch(url, {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-        Authorization: `Bearer ${user.token}`
-      },
-      body: JSON.stringify(post)
-    })
-      .then(res => res.json())
-      .then(data => {
-        setPost(data);
-      })
-      .catch(console.error);
-  }
+  //   fetch(url, {
+  //     method: 'POST',
+  //     headers: {
+  //       'content-type': 'application/json',
+  //       Authorization: `Token ${user.token}`
+  //     },
+  //     body: JSON.stringify(post)
+  //   })
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       setPost(data);
+  //     })
+  //     .catch(console.error);
+  // }
 
   // useEffect(() => {
   //   getPosts();

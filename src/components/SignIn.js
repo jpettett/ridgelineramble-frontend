@@ -1,31 +1,53 @@
-import React from 'react';
-import { Form, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import '../Landing.css';
+import React, { useState, useContext } from 'react';
+import { Redirect } from 'react-router-dom';
+import AuthForm from './AuthForm';
+import { UserContext } from '../UserContext';
+import { APIURL } from '../config';
 
-const SignIn = () => (
-  <div>
-    <h3>Sign In</h3>
-    <div className="signIn">
-      <Form>
-        <Form.Group controlId="formBasicEmail">
-          <Form.Label>Username</Form.Label>
-          <Form.Control type="user" placeholder="Enter username" />
-        </Form.Group>
+function SignIn(props) {
+  const { user, setUser } = useContext(UserContext);
+  const { state: historyState } = props.history.location;
+  const initialState = {
+    username: historyState ? historyState.name : '',
+    email: historyState ? historyState.email : '',
+    password: historyState ? historyState.password : ''
+  };
+  const url = `${APIURL}/token-auth/`;
+  const [credentials, setCredentials] = useState(initialState);
+  const [error, setError] = useState(false);
+  const handleChange = event => {
+    setCredentials({ ...credentials, [event.target.name]: event.target.value });
+  };
+  const handleSubmit = event => {
+    event.preventDefault();
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json; charset=UTF-8'
+      },
+      body: JSON.stringify(credentials)
+    })
+      .then(res => res.json())
+      // .then(json => {
+      //   localStorage.setItem('token', json.token);
+      // })
+      .then(setUser)
+      .catch(setError);
+  };
 
-        <Form.Group controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" />
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Submit
-        </Button>
-      </Form>
+  if (user) {
+    return <Redirect to="/home" />;
+  }
+  return (
+    <div>
+      <h3>Sign In</h3>
+
+      <AuthForm
+        credentials={credentials}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+      />
     </div>
-    <Link to="/signup">
-      <h4>Not a member yet? Sign up for a free account!</h4>
-    </Link>
-  </div>
-);
-
+  );
+}
 export default SignIn;

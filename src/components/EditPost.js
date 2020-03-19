@@ -1,21 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
+import { UserContext } from '../UserContext';
 import Form from './Form';
+import { APIURL } from '../config';
 
 function EditPost({ match }) {
-  const url = `https://young-spire-13129.herokuapp.com/post/${match.params.id}`;
+  const url = `${APIURL}/post/${match.params.id}`;
 
   const [post, setPost] = useState({});
   const [deleted, setDeleted] = useState(false);
 
   const [createdId, setCreatedId] = useState(null);
+  const { user } = useContext(UserContext);
 
   useEffect(() => {
-    fetch(url)
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `JWT ${user.token}`
+      }
+    })
       .then(response => response.json())
       .then(setPost)
       .catch(console.error);
-  }, []);
+  }, [url, user.token]);
 
   const handleChange = function(event) {
     event.persist();
@@ -30,7 +39,8 @@ function EditPost({ match }) {
     fetch(url, {
       method: 'PUT',
       headers: {
-        'content-type': 'application/json; charset=UTF-8'
+        'content-type': 'application/json; charset=UTF-8',
+        Authorization: `JWT ${user.token}`
       },
       body: JSON.stringify(post)
     })
@@ -43,7 +53,10 @@ function EditPost({ match }) {
 
   //delete post and redirect to home page
   function deletePost(event) {
-    fetch(url, { method: 'DELETE' })
+    fetch(url, {
+      method: 'DELETE',
+      headers: { Authorization: `JWT ${user.token}` }
+    })
       .then(res => {
         setDeleted(true);
       })

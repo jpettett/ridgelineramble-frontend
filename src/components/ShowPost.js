@@ -1,25 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+import { UserContext } from '../UserContext';
+import { APIURL } from '../config';
 import '../ShowPost.css';
 
 function ShowPost({ match }) {
+  const { user } = useContext(UserContext);
   const [posts, setPosts] = useState([]);
 
-  function getPosts() {
-    const url = `https://young-spire-13129.herokuapp.com/post/${match.params.id}`;
-
-    fetch(url)
+  useEffect(() => {
+    const url = `${APIURL}/post/${match.params.id}`;
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        Authorization: `JWT ${user.token}`
+      }
+    })
       .then(res => res.json())
       .then(data => {
         setPosts(data);
       })
       .catch(console.error);
+  }, [user, match]);
+  if (!posts) {
+    return <div>Loading...</div>;
   }
-
-  useEffect(() => {
-    getPosts();
-  }, []);
 
   return (
     <>

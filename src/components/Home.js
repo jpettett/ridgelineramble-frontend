@@ -1,27 +1,54 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { UserContext } from '../UserContext';
 import { Link } from 'react-router-dom';
 import { Card, Button } from 'react-bootstrap';
+import { APIURL } from '../config';
 
 function Home() {
+  //set user context
+  const { user, setUser } = useContext(UserContext);
   const [posts, setPosts] = useState([]);
   //get & display all posts
-  function getPosts() {
-    const url = `https://young-spire-13129.herokuapp.com`;
-
-    fetch(url)
-      .then(res => res.json())
-      .then(data => {
-        setPosts(data);
-      })
-      .catch(console.error);
-  }
 
   useEffect(() => {
-    getPosts();
-  }, []);
+    if (user) {
+      const url = `${APIURL}`;
+      fetch(url, {
+        method: 'GET',
+        headers: {
+          Authorization: `JWT ${user.token}`
+        }
+      })
+        .then(res => res.json())
+        .then(data => {
+          setPosts(data);
+        })
+        .catch(console.error);
+    } else {
+      setPosts([]);
+    }
+  }, [user]);
+
+  // useEffect(() => {
+  //   getPosts();
+  // }, []);
+
+  if (!user) {
+    return (
+      <div className="cardContainer">
+        <h1>Welcome to Ridgeline Ramble!</h1>
+        <p>
+          <Link to="/signin">Login</Link> or <Link to="/signup">sign up</Link>{' '}
+          for a free account to get started.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div>
+      <button onClick={() => setUser(null)}>Sign Out</button>
+      <span className="username">{`hello, ${user.user.username}!`}</span>
       <>
         <Button
           className="newPost shadow p-3 mb-5 bg-white rounded"
@@ -56,5 +83,4 @@ function Home() {
     </div>
   );
 }
-
 export default Home;

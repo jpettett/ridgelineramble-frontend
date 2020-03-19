@@ -34,7 +34,7 @@ function SignUp() {
       <Redirect
         to={{
           pathname: '/signin',
-          state: credentials // passing state allows us to prepopulate the signin form
+          state: credentials // prepopulate the signin form
         }}
       />
     );

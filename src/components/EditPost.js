@@ -34,7 +34,7 @@ function EditPost({ match }) {
       method: 'PUT',
       headers: {
         'content-type': 'application/json; charset=UTF-8',
-        Authorization: `Bearer ${user.token}`
+        Authorization: `Token ${user.token}`
       },
       body: JSON.stringify(post)
     })
@@ -49,7 +49,7 @@ function EditPost({ match }) {
   function deletePost(event) {
     fetch(url, {
       method: 'DELETE',
-      headers: { Authorization: `Bearer ${user.token}` }
+      headers: { Authorization: `Token ${user.token}` }
     })
       .then(res => {
         setDeleted(true);

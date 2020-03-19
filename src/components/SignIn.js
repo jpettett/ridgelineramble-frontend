@@ -8,11 +8,11 @@ function SignIn(props) {
   const { user, setUser } = useContext(UserContext);
   const { state: historyState } = props.history.location;
   const initialState = {
-    name: historyState ? historyState.name : '',
+    username: historyState ? historyState.name : '',
     email: historyState ? historyState.email : '',
     password: historyState ? historyState.password : ''
   };
-  const url = `${APIURL}/users/`;
+  const url = `${APIURL}/api/token/`;
   const [credentials, setCredentials] = useState(initialState);
   const [error, setError] = useState(false);
   const handleChange = event => {
@@ -28,6 +28,9 @@ function SignIn(props) {
       body: JSON.stringify(credentials)
     })
       .then(res => res.json())
+      // .then(json => {
+      //   localStorage.setItem('token', json.token);
+      // })
       .then(setUser)
       .catch(setError);
   };
@@ -38,38 +41,7 @@ function SignIn(props) {
   return (
     <div>
       <h3>Sign In</h3>
-      {/* {historyState && (
-        <h4
-          style={{
-            color: 'white',
-            background: 'green',
-            padding: '1rem',
-            position: 'relative',
-            cursor: 'pointer',
-            userSelect: 'none'
-          }}
-        >
-          Thanks for signing up! Please enter your password.
-        </h4>
-      )}
-      {error && (
-        <h4
-          style={{
-            color: 'white',
-            background: 'red',
-            padding: '1rem',
-            position: 'relative',
-            cursor: 'pointer',
-            userSelect: 'none'
-          }}
-          onClick={() => setError(false)}
-        >
-          Sorry, something went wrong. Please try again!
-          <span style={{ position: 'absolute', right: '.75rem', top: '.5rem' }}>
-            ✕
-          </span>
-        </h4>
-      )} */}
+
       <AuthForm
         credentials={credentials}
         handleChange={handleChange}

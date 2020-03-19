@@ -16,7 +16,7 @@ function Home() {
       fetch(url, {
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${user.token}`
+          Authorization: `Token ${user.token}`
         }
       })
         .then(res => res.json())

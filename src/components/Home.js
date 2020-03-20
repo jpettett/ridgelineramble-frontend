@@ -8,8 +8,9 @@ function Home() {
   //set user context
   const { user, setUser } = useContext(UserContext);
   const [posts, setPosts] = useState([]);
-  //get & display all posts
+  const [error, setError] = useState(false);
 
+  //get & display all posts
   useEffect(() => {
     if (user) {
       const url = `${APIURL}`;
@@ -23,11 +24,18 @@ function Home() {
         .then(data => {
           setPosts(data);
         })
-        .catch(console.error);
+        .catch(() => {
+          setError(true);
+        });
     } else {
       setPosts([]);
     }
   }, [user]);
+
+  //returns error message if component doesn't update
+  if (error) {
+    return <div>Sorry, there was a problem signing you in</div>;
+  }
 
   if (!user) {
     return (

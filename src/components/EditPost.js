@@ -10,7 +10,7 @@ function EditPost({ match }) {
 
   const [post, setPost] = useState({});
   const [deleted, setDeleted] = useState(false);
-
+  const [error, setError] = useState(false);
   const [createdId, setCreatedId] = useState(null);
   const { user } = useContext(UserContext);
 
@@ -24,7 +24,9 @@ function EditPost({ match }) {
     })
       .then(response => response.json())
       .then(setPost)
-      .catch(console.error);
+      .catch(() => {
+        setError(true);
+      });
   }, [url, user.token]);
 
   const handleChange = function(event) {
@@ -70,6 +72,11 @@ function EditPost({ match }) {
   //redirect to post
   if (createdId) {
     return <Redirect to={`/post/${createdId}`} />;
+  }
+
+  //returns error message if component doesn't update
+  if (error) {
+    return <div>Sorry, there was a problem updating the post</div>;
   }
 
   return (

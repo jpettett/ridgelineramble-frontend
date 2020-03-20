@@ -6,6 +6,7 @@ import { APIURL } from '../config';
 
 function SignIn(props) {
   const { user, setUser } = useContext(UserContext);
+  //prepoluates forms
   const { state: historyState } = props.history.location;
   const initialState = {
     username: historyState ? historyState.name : '',
@@ -32,6 +33,12 @@ function SignIn(props) {
       .catch(setError);
   };
 
+  //returns error message if problem
+  if (error) {
+    return <div>Sorry, there was a problem signing you in</div>;
+  }
+
+  //sign user in if authenticated
   if (user) {
     return <Redirect to="/home" />;
   }

@@ -29,13 +29,9 @@ function Home() {
     }
   }, [user]);
 
-  // useEffect(() => {
-  //   getPosts();
-  // }, []);
-
   if (!user) {
     return (
-      <div className="cardContainer">
+      <div>
         <h1>Welcome to Ridgeline Ramble!</h1>
         <p>
           <Link to="/signin">Login</Link> or <Link to="/signup">sign up</Link>{' '}
@@ -47,9 +43,16 @@ function Home() {
 
   return (
     <div>
-      <button onClick={() => setUser(null)}>Sign Out</button>
-      <span className="username">{`hello, ${user.user.username}!`}</span>
-      <>
+      <nav>
+        <Button
+          className="signOut shadow p-1"
+          variant="info"
+          onClick={() => setUser(null)}
+        >
+          Sign Out
+        </Button>
+
+        <span className="userName">{`hello, ${user.user.username}!`}</span>
         <Button
           className="newPost shadow p-3 mb-5 bg-white rounded"
           variant="light"
@@ -58,14 +61,11 @@ function Home() {
             Create New Post
           </Link>
         </Button>
-      </>
+      </nav>
       {posts.map(post => (
-        <div
-          className="postCard shadow p-1 mb-3 bg-white rounded"
-          key={post.id}
-        >
+        <div className="container" key={post.id}>
           <Card
-            className="titleCard"
+            className="titleCard shadow p-1 mb-3 bg-white rounded"
             bg="light"
             text="black"
             border=""

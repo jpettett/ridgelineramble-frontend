@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button } from 'react-bootstrap';
 import Home from './components/Home';
 import ShowPost from './components/ShowPost';
 import NewPost from './components/NewPost';

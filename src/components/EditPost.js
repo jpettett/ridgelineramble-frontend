@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import { UserContext } from '../UserContext';
+import { Button } from 'react-bootstrap';
 import Form from './Form';
 import { APIURL } from '../config';
 
@@ -78,7 +79,13 @@ function EditPost({ match }) {
         handleChange={handleChange}
         handleSubmit={handleSubmit}
       />
-      <button onClick={deletePost}>Delete Post</button>
+      <Button
+        className="deleteButton shadow p-1"
+        variant="danger"
+        onClick={deletePost}
+      >
+        Delete Post
+      </Button>
     </>
   );
 }

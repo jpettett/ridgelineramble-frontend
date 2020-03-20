@@ -13,8 +13,6 @@ textarea {
 }
 
 .submit {
+  width: 20rem;
   margin-top: 5px;
-}
-.submit:hover {
-  background-color: rgba(0, 0, 164, 0.119);
 }

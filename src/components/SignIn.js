@@ -28,9 +28,6 @@ function SignIn(props) {
       body: JSON.stringify(credentials)
     })
       .then(res => res.json())
-      // .then(json => {
-      //   localStorage.setItem('token', json.token);
-      // })
       .then(setUser)
       .catch(setError);
   };

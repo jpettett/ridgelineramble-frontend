@@ -32,6 +32,7 @@ nav {
 
 .titleCard {
   text-align: center;
+  margin: 0 auto;
 }
 
 .userName {
@@ -61,6 +62,21 @@ nav {
   color: rgb(108, 29, 29);
 }
 
+.deleteButton {
+  margin-top: 5px;
+  width: 6rem;
+}
+
+.welcome {
+  color: cadetblue;
+}
+
+.login {
+  width: 20rem;
+  margin: 0 auto;
+  margin-top: 15px;
+}
+
 ul {
   color: rgba(55, 55, 55, 0.879);
 }
@@ -69,3 +85,5 @@ ul {
 a {
   text-decoration: none !important;
 }
+
+/* media */

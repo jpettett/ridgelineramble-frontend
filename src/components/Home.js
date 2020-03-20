@@ -33,16 +33,25 @@ function Home() {
     return (
       <div>
         <h1>Welcome to Ridgeline Ramble!</h1>
+        <div className="welcome">
+          <p>
+            As hikers, backpackers, trail runners and volunteers we understand
+            the importance of community building and idea sharing. Ridgeline
+            Ramble is meant to be a place to explore those ideas in an open post
+            style format. Feel free to share inspiring stories, local hiking
+            spots and volunteer opportunities in your area!
+          </p>
+        </div>
         <p>
-          <Link to="/signin">Login</Link> or <Link to="/signup">sign up</Link>{' '}
-          for a free account to get started.
+          <Link to="/signin">Login</Link> or <Link to="/signup">Sign Up</Link>{' '}
+          for a free account to get started!
         </p>
       </div>
     );
   }
 
   return (
-    <div>
+    <>
       <nav>
         <Button
           className="signOut shadow p-1"
@@ -62,25 +71,27 @@ function Home() {
           </Link>
         </Button>
       </nav>
-      {posts.map(post => (
-        <div className="container" key={post.id}>
-          <Card
-            className="titleCard shadow p-1 mb-3 bg-white rounded"
-            bg="light"
-            text="black"
-            border=""
-            style={{ width: '40rem' }}
-          >
-            <Link to={'/post/' + post.id}>
-              <Card.Title>
-                <ul>{post.title}</ul>
-              </Card.Title>
-            </Link>
-            <Card.Text>{post.author}</Card.Text>
-          </Card>
-        </div>
-      ))}
-    </div>
+      <div className="cardHolder">
+        {posts.map(post => (
+          <div className="container" key={post.id}>
+            <Card
+              className="titleCard shadow p-1 mb-3 bg-white rounded"
+              bg="light"
+              text="black"
+              border=""
+              style={{ width: '40rem' }}
+            >
+              <Link to={'/post/' + post.id}>
+                <Card.Title>
+                  <ul>{post.title}</ul>
+                </Card.Title>
+              </Link>
+              <Card.Text>{post.author}</Card.Text>
+            </Card>
+          </div>
+        ))}
+      </div>
+    </>
   );
 }
 export default Home;

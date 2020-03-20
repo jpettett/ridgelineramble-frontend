@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'react-bootstrap';
 
 function AuthForm({ credentials, handleChange, handleSubmit }) {
   return (
@@ -33,7 +34,9 @@ function AuthForm({ credentials, handleChange, handleSubmit }) {
         type="password"
         required
       ></input>
-      <button type="submit">Submit</button>
+      <Button className="login shadow p-1" variant="info" type="submit">
+        Submit
+      </Button>
     </form>
   );
 }

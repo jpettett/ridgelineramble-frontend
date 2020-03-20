@@ -1,5 +1,6 @@
 import React from 'react';
 import '../Form.css';
+import { Button } from 'react-bootstrap';
 
 function Form({ post, handleSubmit, handleChange }) {
   return (
@@ -29,7 +30,9 @@ function Form({ post, handleSubmit, handleChange }) {
           value={post.body}
         />
 
-        <input className="submit" type="submit" />
+        <Button variant="info" className="submit shadow p-1" type="submit">
+          Submit
+        </Button>
       </form>
     </div>
   );
